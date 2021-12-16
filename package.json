@@ -1,0 +1,19 @@
+{
+  "name": "virtual-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NakRex/virtual-library.git"
+  },
+  "author": "Nasim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NakRex/virtual-library/issues"
+  },
+  "homepage": "https://github.com/NakRex/virtual-library#readme"
+}
