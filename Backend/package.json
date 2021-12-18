@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/NakRex/virtual-library/issues"
   },
-  "homepage": "https://github.com/NakRex/virtual-library#readme"
+  "homepage": "https://github.com/NakRex/virtual-library#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.2"
+  }
 }
