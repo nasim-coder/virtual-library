@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let OrgSchema= new mongoose.Schema({
     name:{
     type: String,
-    requird: true
+    required: true
     },
     org_id:{
         type:Number,
@@ -12,4 +12,4 @@ let OrgSchema= new mongoose.Schema({
 })
 
 let Organization = mongoose.model("Organization", OrgSchema);
-module.exports=Organization;
+module.exports = Organization;
