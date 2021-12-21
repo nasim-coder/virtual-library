@@ -16,6 +16,10 @@ let UserSchema = new mongoose.Schema({
     date: {
         type:Date,
         default: Date.now
+    },
+    org_id:{
+        type:Number,
+        required
     }
 });
 let User = mongoose.model("User", UserSchema);
