@@ -2,7 +2,7 @@ const express = require("express");
 const User = require('../model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const secretKey = require('../config/jwtconfig')
+const jwtconfig = require('../config/jwtconfig')
 
 exports.signUp = (req, res)=>{
     let user = new User({
@@ -27,7 +27,7 @@ exports.login = async (req, res)=>{
     }
     const user = await User.findOne({ email });
     if(user && (bcrypt.compare(password, user.password))){
-        const token = jwt.sign({userId: user._id, email}, secretKey, {"expiresIn": "2h"});
+        const token = jwt.sign({userId: user._id, email}, jwtconfig.secret, {"expiresIn": "2h"});
         user.token = token;
         res.status(200).json(user)
     }
