@@ -7,6 +7,10 @@ let BookSchema = new mongoose.Schema({
     department: {
         type: String,
         required: true
+    },
+    org_id: {
+        type: Number,
+        required: true
     }
 })
 let Book = mongoose.model("Book", BookSchema);
