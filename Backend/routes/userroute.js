@@ -7,3 +7,5 @@ Router.post('/login', controller.login);
 Router.get('/books', controller.showBooks);
 Router.post('/changepassword', controller.changePassword);
 Router.post('/logout', controller.logout);
+
+module.exports=Router;
