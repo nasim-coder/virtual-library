@@ -23,4 +23,4 @@ mongoose.connection.on('disconnected', () => {
   console.log('Mongo connection is disconnected')
 })
 
-module.exports = connection;
+module.exports = {connection, CONNECTION_URL};
