@@ -7,8 +7,7 @@ const CONNECTION_URL = `mongodb://${config.host}:${config.port}/${config.db}`
 const connection = mongoose.createConnection(CONNECTION_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
-})
+}, ()=>{ console.log("mongodb connected"); });
 
 mongoose.connection.on('connected', () => {
   console.log('Mongo has connected succesfully')

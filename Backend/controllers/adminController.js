@@ -1,15 +1,15 @@
 const express = require('express');
-const mongoose = require('mogoose');
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Admin = require('../model/admin');
 const {connection} = require('../config/mongoConnection');
 const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
-const {upload} = require('../middleware/gridfsEngine');
+const upload = require('../middleware/gridfsEngine');
 
 
-exports.register = (req, res)=>{
+exports.signUp = (req, res)=>{
     let admin = new Admin({
         name:req.body.name,
         email: req.body.email,
@@ -43,18 +43,20 @@ exports.adminLogin = async (req, res)=>{
 
 
 
-module.exports = (upload)=>{
+// module.exports = (upload)=>{
 
-let gfs;
-connection.once('open', ()=>{
-    gfs = new mongoose.mongo.GridFSBucket(connection.db, {
-        bucketName: 'uploads'
+    let gfs;
+    connection.once('open', ()=>{
+        gfs = new mongoose.mongo.GridFSBucket(connection.db, {
+            bucketName: 'uploads'
+            
+        });
+        console.log('connection open')
     });
-});
-}
+// }
 
 
-exports.adddBook = upload.single('file'), async (req, res)=>{
+exports.addBook = upload.single('file'), async (req, res)=>{
 
 let book = new Book({
     name : req.body.name,

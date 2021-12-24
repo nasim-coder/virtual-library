@@ -1,12 +1,15 @@
-const express = require('express');
-const Router = express.Router();
-const controller = require('../controllers/adminController');
 
-Router.post('/admiRegister', controller.signUp);
-Router.post('/adminLogin', controller.Login);
-Router.post('/addBook', controller.addBook);
-Router.post('/deleteBook', controller.DeleteBook);
-Router.post('/showBooks', controller.showBooks);
-Router.post('/changePassword', controller.changePassword);
-Router.post('/logout', controller.logout);
-module.exports = Router;
+    const adminrouter = require('express').Router();
+    //const adminrouter = express.Router();
+    const controller = require('../controllers/adminController');
+    
+    adminrouter.post('/admiRegister', controller.signUp);
+    adminrouter.post('/adminLogin', controller.adminLogin);
+    adminrouter.post('/addBook', controller.addBook);
+    //adminrouter.post('/deleteBook', (req, res)=>{controller.DeleteBook});
+    //adminrouter.post('/showBooks', (req, res)=>{controller.showBooks});
+    //adminrouter.post('/changePassword', (req, res)=>{controller.changePassword});
+    //adminrouter.post('/logout', controller.logout);
+    
+
+ module.exports = adminrouter;

@@ -1,12 +1,12 @@
 const methodOverride = require('method-override');
 const multer = require('multer');
-const GridFSStorage = require('multer-gridfs-storage');
+const {GridFsStorage} = require('multer-gridfs-storage');
 const config = require('../config/mongoConnection')
 const crypto = require('crypto-js')
 const path = require('path')
 
 //create storage engine
-const storage = new GridFSStorage({
+const storage = new GridFsStorage({
     url:config.CONNECTION_URL,
     file:(req, file)=>{
         return new Promise((resolve, reject)=>{
