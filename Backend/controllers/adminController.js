@@ -6,6 +6,7 @@ const Admin = require('../model/admin');
 const {connection} = require('../config/mongoConnection');
 const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
+const {upload} = require('../middleware/gridfsEngine');
 
 
 exports.register = (req, res)=>{
@@ -42,20 +43,7 @@ exports.adminLogin = async (req, res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-exports.adddBook = (req, res)=>{
+module.exports = (upload)=>{
 
 let gfs;
 connection.once('open', ()=>{
@@ -63,10 +51,20 @@ connection.once('open', ()=>{
         bucketName: 'uploads'
     });
 });
+}
 
-let boo = new Book({
-    name: req.body.name,
 
+exports.adddBook = upload.single('file'), async (req, res)=>{
+
+let book = new Book({
+    name : req.body.name,
+    department : req.body.department,
+    org_id : req.user.org_id
 })
-
+ await book.save((err, book)=>{
+     if(err){
+        res.status(400).json({msg:err})
+        return;
+     }
+ })
 }

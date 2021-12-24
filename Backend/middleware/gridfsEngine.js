@@ -26,3 +26,4 @@ const storage = new GridFSStorage({
 });
 
 const upload = multer({storage})
+module.exports = upload;
