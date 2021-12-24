@@ -6,7 +6,8 @@ const CONNECTION_URL = `mongodb://${config.host}:${config.port}/${config.db}`
 
 const connection = mongoose.createConnection(CONNECTION_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 })
 
 mongoose.connection.on('connected', () => {

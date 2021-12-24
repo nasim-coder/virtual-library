@@ -9,7 +9,7 @@ let verifyToken = (req, res, next) => {
   
     try{
       const decoded = jwt.verify(token, jwtconfig.secret)
-      req.userId = decoded.id
+      req.user = decoded.user;
     }catch(err){
       res.status(400).send("invalid token")
     }
