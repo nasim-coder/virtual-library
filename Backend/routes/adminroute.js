@@ -3,7 +3,7 @@
     //const adminrouter = express.Router();
     const controller = require('../controllers/adminController');
     
-    adminrouter.post('/admiRegister', controller.signUp);
+    adminrouter.post('/adminRegister', controller.signUp);
     adminrouter.post('/adminLogin', controller.adminLogin);
     adminrouter.post('/addBook', controller.addBook);
     //adminrouter.post('/deleteBook', (req, res)=>{controller.DeleteBook});

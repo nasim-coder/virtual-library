@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment-iw');
-const connection = require('../config/mongoConnection')
+// const connection = require('../config/mongoConnection')
 
 let OrgSchema = new mongoose.Schema({
     name: {
@@ -20,7 +20,7 @@ let OrgSchema = new mongoose.Schema({
 let Organization = mongoose.model("Organization", OrgSchema);
 //auto increment the org_id field by one
 // everytime when the record is saved
-autoIncrement.initialize(connection)
+autoIncrement.initialize(mongoose.connection)
 OrgSchema.plugin(autoIncrement.plugin, {
     model: Organization,
     field: 'org_id',

@@ -1,27 +1,31 @@
-const express = require('express');
+// const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Admin = require('../model/admin');
-const {connection} = require('../config/mongoConnection');
+// const {connection} = require('../config/mongoConnection');
+// const {connection} = require('../server')
 const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
 const upload = require('../middleware/gridfsEngine');
 
 
-exports.signUp = (req, res)=>{
+exports.signUp = async (req, res)=>{
     let admin = new Admin({
         name:req.body.name,
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 8),
+        // password: bcrypt.hashSync(req.body.password, 8),
+        password: req.body.password,
         org_id: req.body.org_id
     });
 
-    admin.save((err, admin)=>{
+    await admin.save((err, admin)=>{
         if(err){
             res.status(400).json({msg:err})
             return;
-        }
+        }else{
+            res.status(200).json(admin)
+        } 
     }
     );    
 }
@@ -46,8 +50,8 @@ exports.adminLogin = async (req, res)=>{
 // module.exports = (upload)=>{
 
     let gfs;
-    connection.once('open', ()=>{
-        gfs = new mongoose.mongo.GridFSBucket(connection.db, {
+    mongoose.connection.once('open', ()=>{
+        gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
             bucketName: 'uploads'
             
         });
@@ -67,6 +71,8 @@ let book = new Book({
      if(err){
         res.status(400).json({msg:err})
         return;
+     }else{
+         res.status(200).json(book)
      }
  })
 }
