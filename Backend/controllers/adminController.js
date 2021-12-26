@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Admin = require('../model/admin');
-
+// const {gfs} = require('../middleware/gridfsEngine')
 const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
 
@@ -12,7 +12,7 @@ const {GridFsStorage} = require('multer-gridfs-storage');
 const crypto = require('crypto')
 const path = require('path')
 
-
+// console.log(gfs)
 
 // signup for admin only
 exports.signUp = async (req, res)=>{
@@ -67,8 +67,28 @@ exports.addBook = (req, res)=>{
             res.status(200).json(book)
         }
     })
-    
-    
   }
 
+
+//initializing gridfs storage
+  let gfs;
+  mongoose.connection.once("open", () => {
+      gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
+  });
+
+  exports.showBooks = (req, res, next) => {
+    gfs.find().toArray((err, files) => {
+        if (!files || files.length === 0) {
+            return res.status(200).json({
+                success: false,
+                message: 'No files available'
+            });
+          }
+        res.status(200).json({
+            // success: true,
+            files,
+        });
+    });
+    next()
+};
   

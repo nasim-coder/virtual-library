@@ -7,12 +7,13 @@ const crypto = require('crypto')
 const path = require('path')
 
 //creating connection to database to get th instance
-const conn = mongoose.createConnection("mongodb://localhost:27017/virtual_lib");
-    let gfs;
-    //initialize storage
-    conn.once("open", () => {
-      gfs =new mongoose.mongo.GridFSBucket(conn.db, {bucketName : "uploads"});
-    });
+// const conn = mongoose.createConnection("mongodb://localhost:27017/virtual_lib");
+
+    // let gfs;
+    // mongoose.connection.once("open", () => {
+    //     gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
+      
+    // });
     
     //create storage object
     const storage = new GridFsStorage({
@@ -36,4 +37,6 @@ const conn = mongoose.createConnection("mongodb://localhost:27017/virtual_lib");
       
     });
     
-     module.exports = upload = multer({ storage });
+     const upload = multer({ storage });
+     
+     module.exports= {upload}
