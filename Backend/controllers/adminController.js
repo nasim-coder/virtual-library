@@ -9,7 +9,37 @@ const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
 const upload = require('../middleware/gridfsEngine');
 
+//creating connection to database to get th instance
+const conn = mongoose.createConnection("mongodb://localhost:27017/test");
+    let gfs;
+    //initialize storage
+    conn.once("open", () => {
+      gfs =new mongoose.mongo.GridFSBucket(conn.db, {bucketName : "uploads"});
+    });
+    
+    //create storage object
+    const storage = new GridFsStorage({
+      url: "mongodb://localhost:27017/test",
+      file: (req, file) => {
+        return new Promise((resolve, reject) => {
+          crypto.randomBytes(16, (err, buf) => {
+            if (err) {
+              return reject(err);
+            }
+            const filename = buf.toString("hex") + path.extname(file.originalname);
+            const originalFileName = file.originalname;
+            const fileInfo = {
+              filename: filename,
+              bucketName: "uploads",
+            };
+            resolve(fileInfo);
+          });
+        });
+      },
+    });
+    const upload = multer({ storage });
 
+// signup for admin only
 exports.signUp = async (req, res)=>{
     let admin = new Admin({
         name:req.body.name,
@@ -29,7 +59,7 @@ exports.signUp = async (req, res)=>{
     }
     );    
 }
-
+//login function for admin only
 exports.adminLogin = async (req, res)=>{
     const {email, password} = req.body;
     if(!(email&&password)){
@@ -47,19 +77,11 @@ exports.adminLogin = async (req, res)=>{
 
 
 
-// module.exports = (upload)=>{
-
-    let gfs;
-    mongoose.connection.once('open', ()=>{
-        gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-            bucketName: 'uploads'
-            
-        });
-        console.log('connection open')
-    });
-// }
 
 
+    
+
+//fuction to upload file and book data
 exports.addBook = upload.single('file'), async (req, res)=>{
 
 let book = new Book({
