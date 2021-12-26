@@ -5,15 +5,6 @@ const multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage');
 const crypto = require('crypto')
 const path = require('path')
-
-//creating connection to database to get th instance
-// const conn = mongoose.createConnection("mongodb://localhost:27017/virtual_lib");
-
-    // let gfs;
-    // mongoose.connection.once("open", () => {
-    //     gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
-      
-    // });
     
     //create storage object
     const storage = new GridFsStorage({
