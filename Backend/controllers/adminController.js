@@ -1,43 +1,18 @@
-// const express = require('express');
+
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Admin = require('../model/admin');
-// const {connection} = require('../config/mongoConnection');
-// const {connection} = require('../server')
+
 const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
-const upload = require('../middleware/gridfsEngine');
 
-//creating connection to database to get th instance
-const conn = mongoose.createConnection("mongodb://localhost:27017/test");
-    let gfs;
-    //initialize storage
-    conn.once("open", () => {
-      gfs =new mongoose.mongo.GridFSBucket(conn.db, {bucketName : "uploads"});
-    });
-    
-    //create storage object
-    const storage = new GridFsStorage({
-      url: "mongodb://localhost:27017/test",
-      file: (req, file) => {
-        return new Promise((resolve, reject) => {
-          crypto.randomBytes(16, (err, buf) => {
-            if (err) {
-              return reject(err);
-            }
-            const filename = buf.toString("hex") + path.extname(file.originalname);
-            const originalFileName = file.originalname;
-            const fileInfo = {
-              filename: filename,
-              bucketName: "uploads",
-            };
-            resolve(fileInfo);
-          });
-        });
-      },
-    });
-    const upload = multer({ storage });
+const multer = require('multer');
+const {GridFsStorage} = require('multer-gridfs-storage');
+const crypto = require('crypto')
+const path = require('path')
+
+
 
 // signup for admin only
 exports.signUp = async (req, res)=>{
@@ -76,25 +51,24 @@ exports.adminLogin = async (req, res)=>{
 
 
 
-
-
-
-    
-
 //fuction to upload file and book data
-exports.addBook = upload.single('file'), async (req, res)=>{
+exports.addBook = (req, res)=>{
+  
+    const {name, department, org_id} = req.body;
+    const book = new Book({
+        name:name,
+        department: department,
+        org_id: org_id
+    })
+    book.save((err, book)=>{
+        if(err){
+            res.status(400).json({msg: err})
+        }else{
+            res.status(200).json(book)
+        }
+    })
+    
+    
+  }
 
-let book = new Book({
-    name : req.body.name,
-    department : req.body.department,
-    org_id : req.user.org_id
-})
- await book.save((err, book)=>{
-     if(err){
-        res.status(400).json({msg:err})
-        return;
-     }else{
-         res.status(200).json(book)
-     }
- })
-}
+  

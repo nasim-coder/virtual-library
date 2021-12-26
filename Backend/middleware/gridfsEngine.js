@@ -1,31 +1,39 @@
-const methodOverride = require('method-override');
+
+const mongoose = require('mongoose');
+
 const multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage');
-const config = require('../config/mongoConnection')
-// const {CONNECTION_URL} = require('../server')
-const crypto = require('crypto-js')
+const crypto = require('crypto')
 const path = require('path')
 
-//create storage engine
-const storage = new GridFsStorage({
-    url:config.CONNECTION_URL,
-    // url: CONNECTION_URL,
-    file:(req, file)=>{
-        return new Promise((resolve, reject)=>{
-            crypto.randomBytes(16, (err, buf)=>{
-                if(err){
-                    return reject(err);
-                }
-                const filename = buf.toString('hex') + path.extname(file.originalname);
-                const fileInfo = {
-                    filename : filename,
-                    bucketName :'uploads'
-                };
-                resolve(fileInfo);
-            });
+//creating connection to database to get th instance
+const conn = mongoose.createConnection("mongodb://localhost:27017/virtual_lib");
+    let gfs;
+    //initialize storage
+    conn.once("open", () => {
+      gfs =new mongoose.mongo.GridFSBucket(conn.db, {bucketName : "uploads"});
+    });
+    
+    //create storage object
+    const storage = new GridFsStorage({
+      url: "mongodb://localhost:27017/virtual_lib",
+      file: (req, file) => {
+        return new Promise((resolve, reject) => {
+          crypto.randomBytes(16, (err, buf) => {
+            if (err) {
+              return reject(err);
+            }
+            const filename = buf.toString("hex") + path.extname(file.originalname);
+            const originalFileName = file.originalname;
+            const fileInfo = {
+              filename: filename,
+              bucketName: "uploads",
+            };
+            resolve(fileInfo);
+          });
         });
-    }
-});
-
-const upload = multer({storage})
-module.exports = upload;
+      },
+      
+    });
+    
+     module.exports = upload = multer({ storage });
