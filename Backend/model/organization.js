@@ -29,5 +29,4 @@ OrgSchema.plugin(autoIncrement.plugin, {
 })
 
 
-
 module.exports = Organization;
