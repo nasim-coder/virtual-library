@@ -91,4 +91,18 @@ exports.addBook = (req, res)=>{
     });
     next()
 };
-  
+
+//reading the file in browser
+  exports.readBook = (req, res)=>{
+      let id = req.params.id;
+      o_id = mongoose.Types.ObjectId(id);
+      gfs.find({_id : o_id})
+      .toArray((err, files) => {
+        if (!files || files.length === 0) {
+          return res.status(404).json({
+            err: "no files exist"
+          });
+        }
+        gfs.openDownloadStream(o_id).pipe(res)
+      });
+  }
