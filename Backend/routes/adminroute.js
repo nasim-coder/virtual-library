@@ -10,6 +10,7 @@
     //adminrouter.post('/deleteBook', (req, res)=>{controller.DeleteBook});
     adminrouter.get('/showBooks', controller.showBooks);
     adminrouter.get('/readBook/:id', controller.readBook);
+    adminrouter.get('/downloadBook', controller.downloadBook)
     //adminrouter.post('/changePassword', (req, res)=>{controller.changePassword});
     //adminrouter.post('/logout', controller.logout);
 
