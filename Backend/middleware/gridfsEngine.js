@@ -25,7 +25,6 @@ const path = require('path')
           });
         });
       },
-      
     });
     
      const upload = multer({ storage });

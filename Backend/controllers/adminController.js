@@ -75,8 +75,8 @@ exports.addBook = (req, res)=>{
   mongoose.connection.once("open", () => {
       gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
   });
-
-  exports.showBooks = (req, res, next) => {
+//retrieve all books
+  exports.showBooks = (req, res) => {
     gfs.find().toArray((err, files) => {
         if (!files || files.length === 0) {
             return res.status(200).json({
@@ -84,12 +84,12 @@ exports.addBook = (req, res)=>{
                 message: 'No files available'
             });
           }
-        res.status(200).json({
-            // success: true,
+          res.status(200).json({
+            success: true,
             files,
         });
+        
     });
-    next()
 };
 
 //reading the file in browser
