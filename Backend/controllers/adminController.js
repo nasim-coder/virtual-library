@@ -76,8 +76,8 @@ exports.addBook = (req, res)=>{
       gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
   });
 //retrieve all books
-  exports.showBooks = (req, res) => {
-    gfs.find().toArray((err, files) => {
+  exports.showBooks = async (req, res) => {
+    await gfs.find().toArray((err, files) => {
         if (!files || files.length === 0) {
             return res.status(200).json({
                 success: false,
