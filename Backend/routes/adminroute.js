@@ -11,6 +11,7 @@
     adminrouter.get('/showBooks', controller.showBooks);
     adminrouter.get('/readBook/:id', controller.readBook);
     adminrouter.get('/downloadBook/:id', controller.downloadBook)
+    adminrouter.get('/deleteBook', controller.deleteBook);
     //adminrouter.post('/changePassword', (req, res)=>{controller.changePassword});
     //adminrouter.post('/logout', controller.logout);
 
