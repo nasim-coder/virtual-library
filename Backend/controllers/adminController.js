@@ -93,11 +93,11 @@ exports.addBook = (req, res)=>{
 };
 
 //reading the file in browser
-  exports.readBook = (req, res)=>{
+  exports.readBook = async (req, res)=>{
       let id = req.params.id;
       console.log(id);
       o_id = mongoose.Types.ObjectId(id);
-      gfs.find({_id : o_id})
+      await gfs.find({_id : o_id})
       .toArray((err, files) => {
         if (!files || files.length === 0) {
           return res.status(404).json({
