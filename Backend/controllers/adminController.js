@@ -107,3 +107,22 @@ exports.addBook = (req, res)=>{
         gfs.openDownloadStream(o_id).pipe(res)
       });
   }
+  //downloading a file/book
+
+  exports.downloadBook = (req, res) => {
+      let id = req.params.id;
+      o_id = mongoose.Types.ObjectId(id);
+      gfs.find({_id:o_id})
+      .toArray((err, files) => {
+        if(!files || files.length===0){
+            return res.status(400).json({
+                err : "no files found"
+            })
+        }
+        if(err){
+            return res.status(400).json({msg: err})
+        }
+        res.set('content-Disposition', 'attachment; filename="' + files[0].filename + '"')
+        gfs.openDownloadStream(o_id).pipe(res)
+      });
+  }
