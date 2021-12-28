@@ -96,7 +96,7 @@ exports.addBook = (req, res)=>{
   exports.readBook = async (req, res)=>{
       let id = req.params.id;
       console.log(id);
-      o_id = mongoose.Types.ObjectId(id);
+      let o_id = mongoose.Types.ObjectId(id);
       await gfs.find({_id : o_id})
       .toArray((err, files) => {
         if (!files || files.length === 0) {
@@ -111,7 +111,7 @@ exports.addBook = (req, res)=>{
 
   exports.downloadBook = (req, res) => {
       let id = req.params.id;
-      o_id = mongoose.Types.ObjectId(id);
+      let o_id = mongoose.Types.ObjectId(id);
       gfs.find({_id:o_id})
       .toArray((err, files) => {
         if(!files || files.length===0){
@@ -125,4 +125,16 @@ exports.addBook = (req, res)=>{
         res.set('content-Disposition', 'attachment; filename="' + files[0].filename + '"')
         gfs.openDownloadStream(o_id).pipe(res)
       });
+  }
+
+  //deleting a file/book from uploads
+  exports.deleteBook = (req, res) => {
+      let id = req.params.id;
+      let o_id = mongoose.Types.ObjectId(id);
+      gfs.delete(o_id, (err)=>{
+        if(err){
+            return res.status(404).json({msg: err})
+        }
+        res.status(200).json({msg: 'book removed successfully'})
+      })
   }
