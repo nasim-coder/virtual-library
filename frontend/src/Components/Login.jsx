@@ -13,26 +13,11 @@ import '../Components/HomeData/Homedata.css'
 import { useNavigate } from 'react-router-dom'
 
 
-const initialValue = {
-  name: '',
-}
+
 
 const Login = () => {
-  const navigate = useNavigate()
-
-  const [user, setUser] = useState(initialValue)
-  const { name } = user
-
-
-  const onValueChange = (e) => {
-    console.log(e.target.value)
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
-
-  const addUserDetails = async () => {
-    await addUser(user)
-    navigate('/home')
-  }
+  const navigate = useNavigate();
+ 
   return (
     <>
       <Navbar />
@@ -45,9 +30,8 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>NAME</InputLabel>
             <Input
               id='my-input'
-              onChange={(e) => onValueChange(e)}
-              name='name'
-              value={name}
+            
+              
             />
             <FormHelperText id='my-helper-text'>NAME</FormHelperText>
           </FormControl>
@@ -56,9 +40,7 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>UNIVERSITY NUMBER</InputLabel>
             <Input
               id='my-input'
-              onChange={(e) => onValueChange(e)}
-              name='name'
-              value={name}
+              
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -67,9 +49,7 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>EMAIL</InputLabel>
             <Input
               id='my-input'
-              onChange={(e) => onValueChange(e)}
-              name='name'
-              value={name}
+              
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -78,9 +58,7 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>PASSWORD</InputLabel>
             <Input
               id='my-input'
-              onChange={(e) => onValueChange(e)}
-              name='name'
-              value={name}
+              
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -88,7 +66,7 @@ const Login = () => {
           <Button
             variant='contained'
             color='primary'
-            onClick={() => addUserDetails()}
+           
           >
             {' '}
             LOGIN{' '}
