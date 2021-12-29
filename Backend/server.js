@@ -12,8 +12,10 @@ app.get('/', (req, res)=>{
 })
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-  const adminrouter = require('./routes/adminroute');
+const adminrouter = require('./routes/adminroute');
+const userRouter = require('./routes/userroute');
   app.use('/api', adminrouter);
+  app.use('/api', userRouter)
  
 app.listen(PORT, ()=>{
     console.log(`express server is running on port ${PORT}`);
