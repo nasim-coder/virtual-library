@@ -2,12 +2,7 @@ function Navbar() {
   return (
     <>
       <div className='navBar'>
-        <div className='navLeft'>
-         
-        </div>
-
-        <div className='navMid' >Virtual-Library.com</div>
-      
+        <h1 className='hone'> Virtual-Library.com</h1>
       </div>
     </>
   )
