@@ -11,8 +11,8 @@ import Paper from '@mui/material/Paper'
 import { useEffect, useState } from 'react'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
-import { getUsers } from './api'
-import { deleteUser } from './api'
+import { getMsgs } from './api'
+import { deleteMsg } from './api'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { AppBar } from '@mui/material'
@@ -38,21 +38,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-const AllMsgs = () => {
-  const [users, setUsers] = useState([])
+const AllMsg = () => {
+  const [ msgs, setMsgs] = useState([])
 
   useEffect(() => {
     getAllMsgs()
   }, [])
 
   const getAllMsgs = async () => {
-    const response = await getUsers()
+    const response = await getMsgs()
     console.log(response.data)
-    setUsers(response.data)
+    setMsgs(response.data)
   }
 
-  const deleteUserData = async (id) => {
-    await deleteUser(id)
+  const deleteMsgData = async (id) => {
+    await deleteMsg(id)
     getAllMsgs()
   }
 
@@ -74,13 +74,13 @@ const AllMsgs = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((user) => (
-                <StyledTableRow key={user.id}>
+              {msgs.map(( msg ) => (
+                <StyledTableRow key={msg.id}>
                   <StyledTableCell component='th' scope='id'>
-                    {user.id}
+                    {msg.id}
                   </StyledTableCell>
 
-                  <StyledTableCell align='revert'>{user.name}</StyledTableCell>
+                  <StyledTableCell align='revert'>{msg.name}</StyledTableCell>
 
                   <StyledTableCell align='right'>
                     <Button
@@ -88,7 +88,7 @@ const AllMsgs = () => {
                       color='primary'
                       variant='contained'
                       style={{ marginRight: 10 }}
-                      href={`/admin/edit/${user.id}`}
+                      href={`/admin/edit/${msg.id}`}
                       startIcon={<EditIcon />}
                     >
                       {' '}
@@ -98,7 +98,7 @@ const AllMsgs = () => {
                       size='small'
                       color='secondary'
                       variant='contained'
-                      onClick={() => deleteUserData(user.id)}
+                      onClick={() => deleteMsgData(msg.id)}
                       startIcon={<DeleteIcon />}
                     >
                       {' '}
@@ -114,4 +114,4 @@ const AllMsgs = () => {
     </>
   )
 }
-export default AllMsgs
+export default AllMsg

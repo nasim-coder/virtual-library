@@ -8,7 +8,7 @@ import Navbar from '../HomeData/Navbar'
 import { Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { addUser } from './api'
+import { addMsg } from './api'
 import '../HomeData/Homedata.css'
 import { useNavigate } from 'react-router-dom'
 import { AppBar } from '@mui/material'
@@ -19,17 +19,17 @@ const initialValue = {
 }
 
 const AddMsg = () => {
-  const [user, setUser] = useState(initialValue)
-  const { name } = user
+  const [ msg, setMsg] = useState(initialValue)
+  const { name } =  msg
   const navigate = useNavigate()
 
   const onValueChange = (e) => {
     console.log(e.target.value)
-    setUser({ ...user, [e.target.name]: e.target.value })
+    setMsg({ ...msg, [e.target.name]: e.target.value })
   }
 
-  const addUserDetails = async () => {
-    await addUser(user)
+  const addMsgDetails = async () => {
+    await addMsg( msg )
     navigate('/home')
   }
   return (
@@ -55,7 +55,7 @@ const AddMsg = () => {
           <Button
             variant='contained'
             color='primary'
-            onClick={() => addUserDetails()}
+            onClick={() => addMsgDetails()}
           >
             {' '}
             ADD{' '}

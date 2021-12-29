@@ -10,8 +10,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getUsers } from './api';
-import { editUser } from './api';
+import { getMsgs } from './api';
+import { editMsg } from './api';
 import Navbar from '../HomeData/Navbar';
 import { AppBar } from '@mui/material';
 import { Toolbar } from '@mui/material';
@@ -22,28 +22,28 @@ const initialValue = {
 }
 
 const EditMsg = () => {
-    const [user, setUser] = useState(initialValue);
-    const { name } = user;
+    const [msg, setMsg] = useState(initialValue);
+    const { name } = msg;
     const { id } = useParams(); 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const loadUserData = async() => {
-            const response = await getUsers(id);
-            setUser(response.data);
+        const loadMsgData = async() => {
+            const response = await getMsgs(id);
+            setMsg(response.data);
         }
-        loadUserData();
+        loadMsgData();
     },[id]);
 
     
 
     const onValueChange = (e) => {
         console.log(e.target.value);
-        setUser({...user, [e.target.name]: e.target.value})
+        setMsg({...msg, [e.target.name]: e.target.value})
     }
 
-    const editUserDetails = async () => {
-        await editUser(id,user);
+    const editMsgDetails = async () => {
+        await editMsg(id,msg);
         navigate('/home');
     }
     
@@ -64,7 +64,7 @@ const EditMsg = () => {
         </FormControl>
 
        
-      <Button variant="contained" color="primary" onClick={() => editUserDetails()}> EDIT</Button>
+      <Button variant="contained" color="primary" onClick={() => editMsgDetails()}> EDIT</Button>
       </FormGroup>
     
       </Box>

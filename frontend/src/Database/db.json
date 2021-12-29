@@ -1,24 +1,16 @@
 {
-  "users": [
+  "msgs": [
     {
-      "name": "new book in ec dept",
-      "id": 1
-    },
-    {
-      "name": "new book in cs dept 1",
+      "name": "Pooja Jalagekar7452",
       "id": 2
     },
     {
-      "name": "new book in ec dept",
+      "name": "Pooja Jalagekar",
       "id": 3
     },
     {
       "name": "hello",
       "id": 4
-    },
-    {
-      "name": "test message",
-      "id": 5
     }
   ]
 }

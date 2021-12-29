@@ -43,7 +43,7 @@ const FirstPage = () => {
         title='books'
         src={books}
         alt='hello'
-        style={{ width: 1535, height: 630 }}
+        style={{ width: '100vw', height: '100vh' }}
       />
 
       <p align='center'> © Copyright 2020</p>
