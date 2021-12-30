@@ -141,8 +141,9 @@ exports.addBook = (req, res)=>{
   }
 
   exports.getBookByDepartment = (req, res) => {
-      department = req.params.department
-      Book.find({}, {department: department}, (err, book)=>{
+      department = req.params.department;
+      org_id = req.params.org_id;
+      Book.find({department: department},{org_id : org_id}, (err, book)=>{
           if(err){
               res.status(400).json('something went wrong')
           }
