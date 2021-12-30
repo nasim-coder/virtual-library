@@ -28,9 +28,9 @@ const FirstPage = () => {
             VIRTUAL LIBRARY
           </NavLink>
           <NavLink className={classes.tabs} to='/login' exact>
-            LOGIN
+            SIGN-UP
           </NavLink>
-          <NavLink className={classes.tabs} to='admin' exact>
+          <NavLink className={classes.tabs} to='/login' exact>
             ADMIN
           </NavLink>
         </Toolbar>

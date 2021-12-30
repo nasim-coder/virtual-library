@@ -10,9 +10,6 @@ import Typography from '@mui/material/Typography'
 import '../Components/HomeData/Homedata.css'
 import { useNavigate } from 'react-router-dom'
 
-
-
-
 const Login = () => {
   const navigate = useNavigate();
  
@@ -23,7 +20,7 @@ const Login = () => {
       <Button onClick={() => navigate('/home')}> Home </Button>
       <Box sx={{ p: 15, margin: 'auto', maxWidth: 700 }}>
         <FormGroup>
-          <Typography variant='h4' >LOGIN</Typography>
+          <Typography variant='h4' >NEW USER</Typography>
           <FormControl>
             <InputLabel htmlFor='my-input'>NAME</InputLabel>
             <Input
@@ -69,6 +66,7 @@ const Login = () => {
             {' '}
             LOGIN{' '}
           </Button>
+          <Button onClick={() => navigate('/old')}> LOGIN </Button>
         </FormGroup>
       </Box>
     </>
