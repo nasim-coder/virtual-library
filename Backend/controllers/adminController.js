@@ -58,7 +58,8 @@ exports.addBook = (req, res)=>{
     const book = new Book({
         name:name,
         department: department,
-        org_id: org_id
+        org_id: org_id,
+        fileId: req.file.id
     })
     book.save((err, book)=>{
         if(err){
