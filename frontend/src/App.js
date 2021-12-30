@@ -24,7 +24,7 @@ function App() {
         <Route path='admin/all' element={<AllMsgs />} />
         <Route path='admin/edit/:id' element={<EditMsg />} />
         <Route path='/upload' element={<Upload />} />
-       
+        
       </Routes>
     </BrowserRouter>
     </>

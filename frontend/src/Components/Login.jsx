@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button'
 import Navbar from '../Components/HomeData/Navbar'
-import { addUser} from './Notice/api'
 import FormControl from '@mui/material/FormControl'
 import { FormGroup } from '@mui/material'
 import { Input } from '@mui/material'
@@ -8,7 +7,6 @@ import { InputLabel } from '@mui/material'
 import { FormHelperText } from '@mui/material'
 import { Box } from '@mui/system'
 import Typography from '@mui/material/Typography'
-import { useState } from 'react'
 import '../Components/HomeData/Homedata.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,7 +21,7 @@ const Login = () => {
       <Navbar />
       <Button onClick={() => navigate('/admin')}> admin </Button>
       <Button onClick={() => navigate('/home')}> Home </Button>
-      <Box sx={{ p: 15, margin: 'auto', maxWidth: 500 }}>
+      <Box sx={{ p: 15, margin: 'auto', maxWidth: 700 }}>
         <FormGroup>
           <Typography variant='h4' >LOGIN</Typography>
           <FormControl>

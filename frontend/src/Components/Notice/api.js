@@ -18,19 +18,4 @@ export const editMsg = async (id, msg) => {
 }
 
 
-const url1='http://localhost:3002/users';
 
-export const getUsers = async (id) => {
-    id = id || '';
-    return await axios.get(`${url1}/${id}`);
-} 
-export const addUser = async (user) => {
-    return await axios.post(url1, user);
-}
-export const deleteUser = async (id) => {
-    return await axios.delete(`${url1}/${id}`);
-}
-
-export const editUser = async (id, user) => {
-    return await axios.put(`${url1}/${id}`,user)
-}

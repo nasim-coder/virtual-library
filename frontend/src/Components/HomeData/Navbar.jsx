@@ -2,7 +2,7 @@ function Navbar() {
   return (
     <>
       <div className='navBar'>
-        <h1 className='hone'> Virtual-Library.com</h1>
+        <h1 className='home'> Virtual-Library.com</h1>
       </div>
     </>
   )

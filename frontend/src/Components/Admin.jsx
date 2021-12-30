@@ -4,8 +4,6 @@ import { makeStyles } from '@mui/styles'
 import Toolbar from '@mui/material/Toolbar'
 import { NavLink } from 'react-router-dom'
 import { Stack } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
 import '../Components/HomeData/Homedata.css'
 
 const useStyle = makeStyles({

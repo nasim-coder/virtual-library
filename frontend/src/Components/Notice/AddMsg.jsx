@@ -38,7 +38,7 @@ const AddMsg = () => {
         <AppBar position='static'>
           <Toolbar className='ATB'>ADD MESSAGES </Toolbar>
         </AppBar>
-      <Box sx={{ p: 15, margin: 'auto', maxWidth: 500 }}>
+      <Box sx={{ p: 15, margin: 'auto', maxWidth: 700 }}>
         <FormGroup>
           <Typography variant='h4'>NOTICE BOARD</Typography>
           <FormControl>
