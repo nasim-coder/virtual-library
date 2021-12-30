@@ -139,3 +139,13 @@ exports.addBook = (req, res)=>{
         res.status(200).json({msg: 'book removed successfully'})
       })
   }
+
+  exports.getBookByDepartment = (req, res) => {
+      department = req.params.department
+      Book.find({}, {department: department}, (err, book)=>{
+          if(err){
+              res.status(400).json('something went wrong')
+          }
+          res.status(200).json(book)
+      })
+  }
