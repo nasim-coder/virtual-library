@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button'
-import Navbar from '../Components/HomeData/Navbar'
+import Navbar from './HomeData/Navbar'
 import FormControl from '@mui/material/FormControl'
 import { FormGroup } from '@mui/material'
 import { Input } from '@mui/material'
@@ -11,38 +11,20 @@ import '../Components/HomeData/Homedata.css'
 import { useNavigate } from 'react-router-dom'
 
 
+ 
 
-
-const Registration = () => {
+const Adlogin = () => {
   const navigate = useNavigate();
  
   return (
     <>
       <Navbar />
-      <Button onClick={() => navigate('/admin')}> admin </Button>
-      <Button onClick={() => navigate('/home')}> Home </Button>
+      <Button onClick={() => navigate('/admin')}> ADMIN </Button>
+      <Button onClick={() => navigate('/home')}> USER </Button>
       <Box sx={{ p: 15, margin: 'auto', maxWidth: 700 }}>
         <FormGroup>
           <Typography variant='h4' >LOGIN</Typography>
-          <FormControl>
-            <InputLabel htmlFor='my-input'>NAME</InputLabel>
-            <Input
-              id='my-input'
-            
-              
-            />
-            <FormHelperText id='my-helper-text'>NAME</FormHelperText>
-          </FormControl>
 
-          <FormControl>
-            <InputLabel htmlFor='my-input'>UNIVERSITY NUMBER</InputLabel>
-            <Input
-              id='my-input'
-              
-            />
-            <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
-          </FormControl> 
-          
           <FormControl>
             <InputLabel htmlFor='my-input'>EMAIL</InputLabel>
             <Input
@@ -64,7 +46,7 @@ const Registration = () => {
           <Button
             variant='contained'
             color='primary'
-           
+            onClick={() => navigate('/admin')}
           >
             {' '}
             LOGIN{' '}
@@ -75,5 +57,5 @@ const Registration = () => {
   )
 }
 
-export default Registration
+export default Adlogin
 

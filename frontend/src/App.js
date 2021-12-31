@@ -8,6 +8,7 @@ import AllMsgs from './Components/Notice/AllMsgs'
 import AddMsg from './Components/Notice/AddMsg'
 import EditMsg from './Components/Notice/EditMsg'
 import Upload from './Components/Upload'
+import Adlogin from './Components/Adlogin'
 
 
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<FirstPage />} />
         <Route path='/login' element={<Login />} />
+        <Route path='login/adlogin' element={<Adlogin />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/home' element={<HomePage />} />
         <Route path='admin/add' element={<AddMsg />} />

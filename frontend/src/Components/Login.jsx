@@ -16,8 +16,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <Button onClick={() => navigate('/admin')}> admin </Button>
-      <Button onClick={() => navigate('/home')}> Home </Button>
+      <Button onClick={() => navigate('adlogin')}> LOGIN </Button>
       <Box sx={{ p: 15, margin: 'auto', maxWidth: 700 }}>
         <FormGroup>
           <Typography variant='h4' >NEW USER</Typography>
@@ -25,8 +24,6 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>NAME</InputLabel>
             <Input
               id='my-input'
-            
-              
             />
             <FormHelperText id='my-helper-text'>NAME</FormHelperText>
           </FormControl>
@@ -34,8 +31,7 @@ const Login = () => {
           <FormControl>
             <InputLabel htmlFor='my-input'>UNIVERSITY NUMBER</InputLabel>
             <Input
-              id='my-input'
-              
+              id='my-input'  
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -43,8 +39,7 @@ const Login = () => {
           <FormControl>
             <InputLabel htmlFor='my-input'>EMAIL</InputLabel>
             <Input
-              id='my-input'
-              
+              id='my-input'   
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -53,7 +48,6 @@ const Login = () => {
             <InputLabel htmlFor='my-input'>PASSWORD</InputLabel>
             <Input
               id='my-input'
-              
             />
             <FormHelperText id='my-helper-text'>DETAILS</FormHelperText>
           </FormControl> 
@@ -61,12 +55,11 @@ const Login = () => {
           <Button
             variant='contained'
             color='primary'
-           
-          >
+            >
             {' '}
             LOGIN{' '}
           </Button>
-          <Button onClick={() => navigate('/old')}> LOGIN </Button>
+         
         </FormGroup>
       </Box>
     </>
