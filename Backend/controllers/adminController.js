@@ -58,7 +58,8 @@ exports.addBook = (req, res)=>{
     const book = new Book({
         name:name,
         department: department,
-        org_id: org_id
+        org_id: org_id,
+        fileId: req.file.id
     })
     book.save((err, book)=>{
         if(err){
@@ -136,5 +137,16 @@ exports.addBook = (req, res)=>{
             return res.status(404).json({msg: err})
         }
         res.status(200).json({msg: 'book removed successfully'})
+      })
+  }
+
+  exports.getBookByDepartment = (req, res) => {
+      department = req.params.department;
+      org_id = req.params.org_id;
+      Book.find({department: department},{org_id : org_id}, (err, book)=>{
+          if(err){
+              res.status(400).json('something went wrong')
+          }
+          res.status(200).json(book)
       })
   }

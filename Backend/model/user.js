@@ -19,7 +19,7 @@ let UserSchema = new mongoose.Schema({
     },
     org_id:{
         type:Number,
-        required
+        required:  true
     }
 });
 let User = mongoose.model("User", UserSchema);

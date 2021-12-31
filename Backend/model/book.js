@@ -11,6 +11,9 @@ let BookSchema = new mongoose.Schema({
     org_id: {
         type: Number,
         required: true
+    },
+    fileId:{
+        type: mongoose.Types.ObjectId
     }
 })
 let Book = mongoose.model("Book", BookSchema);
