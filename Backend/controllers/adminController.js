@@ -153,7 +153,7 @@ exports.addBook = (req, res)=>{
       })
   }
 
-  //get all the books irrespective of department
+  //get all the books irrespective of department of particular org
   exports.getAllBook = (req, res) => {
     org_id = req.params.org_id;
     Book.find({org_id: org_id}, (err, book)=>{

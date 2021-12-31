@@ -13,6 +13,7 @@
     adminrouter.get('/downloadBook/:id', controller.downloadBook)
     adminrouter.get('/deleteBook/:id', controller.deleteBook);
     adminrouter.get('/getBookbyDepartment/:department/:org_id', controller.getBookByDepartment)
+    adminrouter.get('/getallbook/:org_id', controller.getAllBook)
     //adminrouter.post('/changePassword', (req, res)=>{controller.changePassword});
     //adminrouter.post('/logout', controller.logout);
 
