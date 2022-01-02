@@ -7,7 +7,7 @@ let OrgSchema = new mongoose.Schema({
     },
     org_id: {
         type: Number,
-        
+        required,
         unique: true
     },
     date: {

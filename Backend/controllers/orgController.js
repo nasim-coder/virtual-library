@@ -4,6 +4,7 @@ const Organisation = require('../model/organization');
 exports.createOrg = (req, res) => {
     let org = new Organisation({
         name: req.name,
+        org_id: req.org_id
     });
 
     org.save((err, org)=>{
