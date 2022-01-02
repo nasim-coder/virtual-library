@@ -7,7 +7,7 @@ let OrgSchema = new mongoose.Schema({
     },
     org_id: {
         type: Number,
-        required,
+        required: true,
         unique: true
     },
     date: {
@@ -16,4 +16,4 @@ let OrgSchema = new mongoose.Schema({
     }
 })
 
-module.exports = Organization;
+module.exports = mongoose.model('Organisation', OrgSchema);

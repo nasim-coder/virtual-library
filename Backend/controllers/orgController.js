@@ -3,10 +3,10 @@ const Organisation = require('../model/organization');
 
 exports.createOrg = (req, res) => {
     let org = new Organisation({
-        name: req.name,
-        org_id: req.org_id
+        name: req.body.name,
+        org_id: req.body.org_id
     });
-
+console.log(req);
     org.save((err, org)=>{
         if(err){
             res.status(400).json({msg: err})

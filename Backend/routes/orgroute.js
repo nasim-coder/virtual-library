@@ -3,3 +3,5 @@ const controller = require('../controllers/orgController')
 
 //for superuser use only
 orgRouter.post('/create/organisation', controller.createOrg)
+
+module.exports = orgRouter;
