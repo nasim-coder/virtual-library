@@ -10,6 +10,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import 'bootstrap';
 // Worker
 import { Worker } from '@react-pdf-viewer/core'; // install this library
+import Navbar from './HomeData/Navbar';
 
 const Pdf = () => {
   
@@ -59,6 +60,7 @@ const Pdf = () => {
 
   return (
       <>
+      <Navbar/>
     <div className='container'>
 
     <br></br>
