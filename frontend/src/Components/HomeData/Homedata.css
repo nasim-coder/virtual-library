@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 body {
@@ -42,7 +43,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  width: 97vw;
+  width: 95vw;
   border: 2px solid rgb(0, 0, 0);
   padding: 15px;
 }
@@ -104,4 +105,27 @@ body {
   position: relative;
   left: 850px;
   top: 35px;
+}
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+}
+.search {
+  margin-left: -200px;
+  width: 500px;
+  padding: 10px;
+  background-color: #eee;
+  outline: none;
+  border: 1px solid rgb(63, 61, 61);
+  border-radius: 20px;
+}
+.database {
+  background-color: #333;
+  padding: 25px;
+  margin: 25px 200px 0 0;
+  height: 20vh;
+  overflow: scroll;
+  color: #fff;
 }
