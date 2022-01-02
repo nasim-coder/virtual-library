@@ -17,8 +17,10 @@ console.log(req);
 }
 
 exports.deleteOrg = (req, res)=>{
-    let org_id = req.params.id;
-      Organisation.delete(org_id, (err)=>{
+   
+    let org_id = parseInt(req.params.id);
+    console.log(typeof org_id);
+      Organisation.remove({org_id}, (err)=>{
         if(err){
             return res.status(404).json({msg: err})
         }
