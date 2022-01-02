@@ -15,3 +15,13 @@ console.log(req);
         }
     });
 }
+
+exports.deleteOrg = (req, res)=>{
+    let org_id = req.params.id;
+      Organisation.delete(org_id, (err)=>{
+        if(err){
+            return res.status(404).json({msg: err})
+        }
+        res.status(200).json({msg: 'org deleted successfully'})
+      })
+}
