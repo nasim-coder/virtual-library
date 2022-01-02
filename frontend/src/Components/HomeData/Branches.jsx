@@ -1,15 +1,39 @@
+import Data from './Data.json'
+import './Homedata.css'
+import { useState } from 'react'
+
 function Branches() {
+  const [searchData, setSearchData] = useState('')
   return (
     <>
-      <div className='branches'>
-        <div className='one'>alpha department</div>
-        <div className='one'>beta department</div>
-        <div className='one'>charlie department</div>
-        <div className='one'>delta department</div>
-        <div className='one'>echo department</div>
-        <div className='one'>foxtrot department</div>
-        <div className='one'>golf department</div>
-        <div className='one'>hotel department</div>
+      <div className='searchbar'>
+        <div className='App'>
+          <input
+            className='search'
+            type='text'
+            placeholder='Search data...'
+            onChange={(e) => {
+              setSearchData(e.target.value)
+            }}
+          />
+        </div>
+        <div className='database'>
+          {Data.filter((val) => {
+            if (searchData == '') {
+              return val
+            } else if (
+              val.BookName.toLowerCase().includes(searchData.toLowerCase())
+            ) {
+              return val
+            }
+          }).map((val, key) => {
+            return (
+              <div className='library' key={key}>
+                <p> {val.BookName}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </>
   )

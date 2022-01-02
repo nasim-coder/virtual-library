@@ -76,7 +76,7 @@ exports.addBook = (req, res)=>{
   mongoose.connection.once("open", () => {
       gfs = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {bucketName : "uploads"});
   });
-//retrieve all books
+//retrieve all books/actual file
   exports.showBooks = async (req, res) => {
     await gfs.find().toArray((err, files) => {
         if (!files || files.length === 0) {
@@ -140,13 +140,26 @@ exports.addBook = (req, res)=>{
       })
   }
 
+  //get all book by using department and org_id
+  //get all book of particular org and particular depatment
   exports.getBookByDepartment = (req, res) => {
       department = req.params.department;
       org_id = req.params.org_id;
-      Book.find({department: department},{org_id : org_id}, (err, book)=>{
+      Book.find({and: [{department: department},{org_id : org_id}]}, (err, book)=>{
           if(err){
               res.status(400).json('something went wrong')
           }
           res.status(200).json(book)
       })
   }
+
+  //get all the books irrespective of department of particular org
+  exports.getAllBook = (req, res) => {
+    org_id = req.params.org_id;
+    Book.find({org_id: org_id}, (err, book)=>{
+        if(err){
+            res.status(400).json({'something went wrong': err})
+        }
+        res.status(200).json(book)
+    })
+}

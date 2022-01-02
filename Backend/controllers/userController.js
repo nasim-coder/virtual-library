@@ -16,7 +16,7 @@ exports.signUp = (req, res)=>{
             res.status('500').send({message: err})
             return
         }
-        
+        res.status(200).json('you are registered successfully')
     });
     
 };
@@ -27,10 +27,12 @@ exports.login = async (req, res)=>{
         res.status(400).send("All input is required");
     }
     const user = await User.findOne({ email });
-    if(user && (bcrypt.compare(password, user.password))){
-        const token = jwt.sign({userId: user._id, email}, jwtconfig.secret, {"expiresIn": "2h"});
+    let isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if(user && (isPasswordCorrect)){
+        const token = jwt.sign({user}, jwtconfig.secret, {"expiresIn": "2h"});
         user.token = token;
         res.status(200).json(user)
+    }else{
+        res.status(400).send("invalid credential")
     }
-    res.status(400).send("invalid credential")
 }

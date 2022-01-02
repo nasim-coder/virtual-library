@@ -11,6 +11,21 @@
     {
       "name": "MS Dhoni",
       "id": 3
+<<<<<<< HEAD
+=======
+    },
+    {
+      "name": "new book in ec dept",
+      "id": 4
+    },
+    {
+      "name": "hello",
+      "id": 5
+    },
+    {
+      "name": "testing",
+      "id": 6
+>>>>>>> 422ec64fa1c7e38b46ec806c667514459018d642
     }
   ]
 }
