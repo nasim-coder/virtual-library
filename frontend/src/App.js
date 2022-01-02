@@ -9,7 +9,7 @@ import AddMsg from './Components/Notice/AddMsg'
 import EditMsg from './Components/Notice/EditMsg'
 import Upload from './Components/Upload'
 import Adlogin from './Components/Adlogin'
-
+import Pdf from './Components/Pdf'
 
 
 function App() {
@@ -25,8 +25,8 @@ function App() {
         <Route path='admin/add' element={<AddMsg />} />
         <Route path='admin/all' element={<AllMsgs />} />
         <Route path='admin/edit/:id' element={<EditMsg />} />
-        <Route path='/upload' element={<Upload />} />
-        
+        <Route path='/upload1' element={<Upload />} />
+        <Route path='upload1/pdf' element={<Pdf />} />
       </Routes>
     </BrowserRouter>
     </>
