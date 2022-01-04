@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//defining schema for organisation
 let OrgSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -16,4 +17,5 @@ let OrgSchema = new mongoose.Schema({
     }
 })
 
+//creating model of organisation and exporting it 
 module.exports = mongoose.model('Organisation', OrgSchema);

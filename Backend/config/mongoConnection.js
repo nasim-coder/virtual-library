@@ -6,6 +6,6 @@ const CONNECTION_URL = 'mongodb://localhost:27017/virtual_lib';
 mongoose.connect(CONNECTION_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}, ()=>{ console.log("mongodb connected"); });
+}, () => { console.log("mongodb connected"); });
 
 module.exports = CONNECTION_URL;

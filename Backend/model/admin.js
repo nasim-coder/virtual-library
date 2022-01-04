@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
+//creating schema for Admin
 let AdminSchema = new mongoose.Schema({
-    name :{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
@@ -13,12 +14,15 @@ let AdminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    
+
     org_id: {
         type: Number,
         required: true
     }
 })
 
+//creating model for Admin
 let Admin = mongoose.model("Admin", AdminSchema);
-module.exports=Admin;
+
+//exporting the Admin model
+module.exports = Admin;

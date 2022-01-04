@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const emailCredential = require('../emailConfig.json')
-
+//creating transporter object
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -12,6 +12,7 @@ let transporter = nodemailer.createTransport({
     }
 });
 
+//options for email to send
 let mailOptions = {
     from: '',
     to: '',
@@ -19,6 +20,7 @@ let mailOptions = {
     text: 'Hello World!'
 };
 
+//sending the email
 transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
         return console.log(error.message);

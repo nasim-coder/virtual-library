@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+
+//defining schema for the Books
 let BookSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
@@ -12,9 +14,13 @@ let BookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    fileId:{
+    fileId: {
         type: mongoose.Types.ObjectId
     }
 })
+
+//creating model for the book
 let Book = mongoose.model("Book", BookSchema);
+
+//exporting the Book model
 module.exports = Book;
