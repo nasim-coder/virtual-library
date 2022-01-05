@@ -46,6 +46,7 @@ exports.adminLogin = async (req, res) => {
     }
     res.status(400).send("invalid credential")
 }
+
 //change password
 exports.changePassword = async (req, res) => {
     let newPassword = bcrypt.hashSync(req.body.newPassword, 8);

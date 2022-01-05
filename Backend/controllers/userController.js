@@ -37,3 +37,16 @@ exports.login = async (req, res) => {
         res.status(400).send("invalid credential")
     }
 }
+
+//change password
+exports.changePassword = async (req, res) => {
+    let newPassword = bcrypt.hashSync(req.body.newPassword, 8);
+    let id = mongoose.Types.ObjectId(req.body.id);
+    await User.findByIdAndUpdate(id, { password: newPassword }, (err, data) => {
+        if (err) {
+            res.status(400).json({success: false, msg: err})
+        } else {
+            res.status(200).json({success:true, msg: "updated successfully"})
+        }
+    })
+}

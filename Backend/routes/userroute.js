@@ -9,7 +9,7 @@ userRouter.post('/register', controller.signUp);
 userRouter.post('/login', controller.login);
 userRouter.get('/getbooks/:department/:org_id', verifyToken, acontroller.getBookByDepartment)
 userRouter.get('/getallbook/:org_id', verifyToken, acontroller.getAllBook)
-// userRouter.post('/changepassword', controller.changePassword);
+userRouter.post('/changepassword', verifyToken, controller.changePassword);
 // userRouter.post('/logout', controller.logout);
 
 //exporting route
