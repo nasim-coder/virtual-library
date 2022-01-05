@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const Admin = require('../model/admin');
-const Book = require('../model/book');
 const jwtconfig = require('../config/jwtconfig')
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto')
 const path = require('path')
+const Admin = require('../model/admin');
+const Book = require('../model/book');
+const Notification = require('../model/notification');
+const notification = require('../model/notification');
 
 // signup for admin only
 exports.signUp = async (req, res) => {
@@ -155,5 +157,20 @@ exports.getAllBook = (req, res) => {
             res.status(400).json({ 'something went wrong': err })
         }
         res.status(200).json(book)
+    })
+}
+
+//function to add notice
+exports.addNotice = (req, res) => {
+    notification = new Notification({
+        message: req.body.message,
+        org_id: req.body.org_id
+    })
+    notification.save((err, notification) => {
+        if (err) {
+            res.status(400).json({msg: err})
+        }else {
+           res.status(200).json({"notice added": notification}) 
+        }
     })
 }
