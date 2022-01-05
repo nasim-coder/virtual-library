@@ -12,11 +12,13 @@ import Adlogin from './Components/Adlogin'
 import Pdf from './Components/Pdf'
 
 
+
 function App() {
   return (
     <>
     <BrowserRouter>
       <Routes>
+        
         <Route path='/' element={<FirstPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='login/adlogin' element={<Adlogin />} />
