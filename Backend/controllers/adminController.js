@@ -48,7 +48,7 @@ exports.adminLogin = async (req, res) => {
 }
 
 //fuction to upload file and book data
-exports.addBook = (req, res) => {
+exports.addBook = async (req, res) => {
 
     const { name, department, org_id } = req.body;
     const book = new Book({
@@ -57,7 +57,7 @@ exports.addBook = (req, res) => {
         org_id: org_id,
         fileId: req.file.id
     })
-    book.save((err, book) => {
+    await book.save((err, book) => {
         if (err) {
             res.status(400).json({ msg: err })
         } else {
@@ -106,10 +106,10 @@ exports.readBook = async (req, res) => {
 }
 
 //downloading a file/book
-exports.downloadBook = (req, res) => {
+exports.downloadBook = async (req, res) => {
     let id = req.params.id;
     let o_id = mongoose.Types.ObjectId(id);
-    gfs.find({ _id: o_id })
+   await gfs.find({ _id: o_id })
         .toArray((err, files) => {
             if (!files || files.length === 0) {
                 return res.status(400).json({
@@ -125,10 +125,10 @@ exports.downloadBook = (req, res) => {
 }
 
 //deleting a file/book from uploads
-exports.deleteBook = (req, res) => {
+exports.deleteBook = async (req, res) => {
     let id = req.params.id;
     let o_id = mongoose.Types.ObjectId(id);
-    gfs.delete(o_id, (err) => {
+    await gfs.delete(o_id, (err) => {
         if (err) {
             return res.status(404).json({ msg: err })
         }
@@ -138,10 +138,10 @@ exports.deleteBook = (req, res) => {
 
 //get all book by using department and org_id
 //get all book of particular org and particular depatment
-exports.getBookByDepartment = (req, res) => {
+exports.getBookByDepartment = async (req, res) => {
     department = req.params.department;
     org_id = req.params.org_id;
-    Book.find({ and: [{ department: department }, { org_id: org_id }] }, (err, book) => {
+    await Book.find({ and: [{ department: department }, { org_id: org_id }] }, (err, book) => {
         if (err) {
             res.status(400).json('something went wrong')
         }
@@ -150,9 +150,9 @@ exports.getBookByDepartment = (req, res) => {
 }
 
 //get all the books irrespective of department of particular org
-exports.getAllBook = (req, res) => {
+exports.getAllBook = async (req, res) => {
     org_id = req.params.org_id;
-    Book.find({ org_id: org_id }, (err, book) => {
+    await Book.find({ org_id: org_id }, (err, book) => {
         if (err) {
             res.status(400).json({ 'something went wrong': err })
         }
@@ -161,12 +161,12 @@ exports.getAllBook = (req, res) => {
 }
 
 //function to add notice
-exports.addNotice = (req, res) => {
+exports.addNotice = async (req, res) => {
     notification = new Notification({
         message: req.body.message,
         org_id: req.body.org_id
     })
-    notification.save((err, notification) => {
+    await notification.save((err, notification) => {
         if (err) {
             res.status(400).json({msg: err})
         }else {
