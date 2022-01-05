@@ -46,6 +46,18 @@ exports.adminLogin = async (req, res) => {
     }
     res.status(400).send("invalid credential")
 }
+//change password
+exports.changePassword = (req, res) => {
+    let newPassword = bcrypt.hashSync(req.body.newPassword, 8);
+    let id = mongoose.Types.ObjectId(req.body.id);
+    Admin.findByIdAndUpdate(id, { password: newPassword }, (err, data) => {
+        if (err) {
+            res.status(400).json({msg: err})
+        } else {
+            res.status(200).json({success:true, msg: "updated successfully"})
+        }
+    })
+}
 
 //fuction to upload file and book data
 exports.addBook = async (req, res) => {
@@ -174,3 +186,4 @@ exports.addNotice = async (req, res) => {
         }
     })
 }
+
