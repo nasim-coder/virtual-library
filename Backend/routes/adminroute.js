@@ -11,7 +11,8 @@ adminrouter.get('/readBook/:id', controller.readBook);
 adminrouter.get('/downloadBook/:id', controller.downloadBook)
 adminrouter.get('/deleteBook/:id', controller.deleteBook);
 adminrouter.get('/getBookbyDepartment/:department/:org_id', controller.getBookByDepartment)
-adminrouter.get('/getallbook/:org_id', controller.getAllBook)
+adminrouter.get('/getallbook/:org_id', controller.getAllBook);
+adminrouter.post('/addNotice/', controller.addNotice)
 //adminrouter.post('/changePassword', controller.changePassword);
 //adminrouter.post('/logout', controller.logout);
 
