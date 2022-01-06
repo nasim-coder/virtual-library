@@ -14,6 +14,7 @@ adminrouter.get('/getBookbyDepartment/:department/:org_id', controller.getBookBy
 adminrouter.get('/getallbook/:org_id', controller.getAllBook);
 adminrouter.post('/addNotice/', controller.addNotice)
 adminrouter.post('/changePassword', controller.changePassword);
+adminrouter.post('/forgotPassword', controller.forgotPassword)
 //adminrouter.post('/logout', controller.logout);
 
 // exporting route
