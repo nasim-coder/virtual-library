@@ -12,13 +12,11 @@ import Adlogin from './Components/Adlogin'
 import Pdf from './Components/Pdf'
 
 
-
 function App() {
   return (
     <>
     <BrowserRouter>
       <Routes>
-        
         <Route path='/' element={<FirstPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='login/adlogin' element={<Adlogin />} />
@@ -27,8 +25,8 @@ function App() {
         <Route path='admin/add' element={<AddMsg />} />
         <Route path='admin/all' element={<AllMsgs />} />
         <Route path='admin/edit/:id' element={<EditMsg />} />
-        <Route path='/upload' element={<Upload />} />
-        <Route path='upload/pdf' element={<Pdf />} />
+        <Route path='/upload1' element={<Upload />} />
+        <Route path='upload1/pdf' element={<Pdf />} />
       </Routes>
     </BrowserRouter>
     </>

@@ -51,7 +51,7 @@ const Admin = () => {
       <AppBar position='static' className='upload'>
         UPLOAD BOOKS
         <Toolbar className='tbx'>
-          <NavLink className={classes.tabs} to='/upload' exact>
+          <NavLink className={classes.tabs} to='/upload1' exact>
             UPLOAD
           </NavLink>
           <NavLink className={classes.tabs} to='/home' exact>
