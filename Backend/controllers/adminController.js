@@ -60,6 +60,16 @@ exports.changePassword = async (req, res) => {
     })
 }
 
+//function for forgot password
+exports.forgotPassword = (req, res) => {
+    let email = req.body.email;
+    Admin.find({ email }, (err, email) => {
+        if (err) {
+            res.status(400).json({ success: false, msg: err})
+        }
+    })
+}
+
 //fuction to upload file and book data
 exports.addBook = async (req, res) => {
 
