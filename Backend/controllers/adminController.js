@@ -63,11 +63,16 @@ exports.changePassword = async (req, res) => {
 //function for forgot password
 exports.forgotPassword = (req, res) => {
     let email = req.body.email;
-    Admin.find({ email }, (err, email) => {
+     let usermail = Admin.find({ email : email}, (err, email) => {
         if (err) {
             res.status(400).json({ success: false, msg: err})
-        }
-    })
+        } 
+     })
+     let randomPassword = Math.random().toString(36).slice(-8);
+       
+    console.log(randomPassword);
+    console.log(usermail.password);
+    res.status(200).json({success: true})
 }
 
 //fuction to upload file and book data
