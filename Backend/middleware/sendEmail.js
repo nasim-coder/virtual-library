@@ -12,18 +12,19 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-//options for email to send
-let mailOptions = {
-    from: '',
-    to: '',
-    subject: 'Test',
-    text: 'Hello World!'
-};
+// //options for email to send
+// let mailOptions = {
+//     from: '',
+//     to: '',
+//     subject: 'Test',
+//     text: 'Hello World!'
+// };
 
-//sending the email
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error.message);
-    }
-    console.log('success');
-});
+// //sending the email
+// transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//         return console.log(error.message);
+//     }
+//     console.log('success');
+// });
+module.exports= transporter

@@ -10,6 +10,7 @@ const Admin = require('../model/admin');
 const Book = require('../model/book');
 const Notification = require('../model/notification');
 const notification = require('../model/notification');
+const transporter = require('../middleware/sendEmail')
 
 // signup for admin only
 exports.signUp = async (req, res) => {
@@ -42,9 +43,12 @@ exports.adminLogin = async (req, res) => {
     if (admin && (bcrypt.compare(password, admin.password))) {
         const token = jwt.sign({ userId: admin._id, email }, jwtconfig.secret, { "expiresIn": "2h" });
         admin.token = token;
-        res.status(200).json(user)
+        res.status(200).json(admin)
+    } else {
+        
+        res.status(400).send("invalid credential")  
     }
-    res.status(400).send("invalid credential")
+    
 }
 
 //change password
@@ -61,18 +65,35 @@ exports.changePassword = async (req, res) => {
 }
 
 //function for forgot password
-exports.forgotPassword = (req, res) => {
-    let email = req.body.email;
-     let usermail = Admin.find({ email : email}, (err, email) => {
+exports.forgotPassword = async (req, res) => {
+    const email = req.body.email;
+    const user = await Admin.findOne({ email })
+    if (!user) {
+       return res.status(400).json({msg:'user is not registered'})
+    } 
+    const randomPassword = Math.random().toString(36).slice(-8);
+    const message = {
+        from: 'virtual-library',
+        to: user.email,
+        subject: 'Virtual-lib-recovery',
+        text: `your temporary password has been generated randomly,
+         please use it to login and change it as soon as possible.
+          Your password is : ${randomPassword}`
+    }
+    transporter.sendMail(message, (err, data) => {
         if (err) {
-            res.status(400).json({ success: false, msg: err})
-        } 
-     })
-     let randomPassword = Math.random().toString(36).slice(-8);
-       
-    console.log(randomPassword);
-    console.log(usermail.password);
-    res.status(200).json({success: true})
+            return res.status(500).json({msg:"email could not be sent"})
+        }
+    })
+
+
+     Admin.findByIdAndUpdate(user._id, { password: randomPassword }, (err, data) => {
+        if (err) {
+            return res.status(400).json({success: false, msg: err})
+        } else {
+            res.status(200).json({success:true, msg: "email sent successfully with password"})
+        }
+    })
 }
 
 //fuction to upload file and book data
