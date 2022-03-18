@@ -1,6 +1,7 @@
 const adminrouter = require('express').Router();
 const controller = require('../controllers/adminController');
-const { upload } = require('../middleware/gridfsEngine')
+const { upload } = require('../middleware/gridfsEngine');
+let veryfytoken = require('../middleware/jwt');
 
 //defining routes for admin
 adminrouter.post('/adminRegister', controller.signUp);
